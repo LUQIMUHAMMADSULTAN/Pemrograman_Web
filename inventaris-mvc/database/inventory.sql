@@ -50,10 +50,6 @@ CREATE TABLE transactions (
         REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO users (username, password, full_name, role) 
-VALUES ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', 'admin')
-ON DUPLICATE KEY UPDATE password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
-
 -- Bersihkan data lama agar tidak terjadi duplikasi ID
 DELETE FROM transactions;
 DELETE FROM items;
@@ -62,7 +58,9 @@ DELETE FROM users;
 
 -- 1. Insert Data User (Password: password)
 INSERT INTO users (id, username, password, full_name, role) VALUES 
-(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', 'admin');
+(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', 'admin')
+ON DUPLICATE KEY UPDATE password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+
 
 -- 2. Insert 4 Kategori Sesuai Target
 INSERT INTO categories (id, name, description) VALUES 
